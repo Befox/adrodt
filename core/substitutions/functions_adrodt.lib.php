@@ -77,5 +77,4 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_fax'] 			= $object->client->fax;
 	}
 	
-   $substitutionarray['myowntag'] .= print_r($substitutionarray, true);
 }
