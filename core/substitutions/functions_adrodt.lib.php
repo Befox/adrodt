@@ -93,10 +93,9 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$object,$line)
 {
    global $conf,$db;
-	$substitutionarray['myowntag'] = '';
+
 	$line->fetch_optionals($line->rowid);
 	foreach($line->array_options as $options_key => $value)
-		$substitutionarray['myowntag'] .= $options_key.'//'.$value;
+		$substitutionarray['line_'.$options_key] = $value;
 
-   //$substitutionarray['myowntag']=print_r($line, true);
 }
