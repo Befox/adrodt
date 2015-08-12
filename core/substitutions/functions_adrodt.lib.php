@@ -47,8 +47,8 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	
 	$arrayidcontact = $object->getIdContact('external','BILLING');
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
-	{
-		$substitutionarray['myadrodt_billname']			= trim($object->contact->firstname.' '.$object->contact->lastname);
+	{$substitutionarray['myowntag'] 			= 'test';
+		$substitutionarray['myadrodtbillname']			= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_bill_name']			= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_bill_lastname'] 		= $object->contact->lastname;
 		$substitutionarray['adrodt_bill_firstname'] 	= $object->contact->firstname;
@@ -63,8 +63,8 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_fax'] 			= $object->contact->fax;
 	}
 	else
-	{
-		$substitutionarray['myadrodt_billname']			= $object->client->name;
+	{$substitutionarray['myowntag'] 			= 'test';
+		$substitutionarray['myadrodtbillname']			= $object->client->name;
 		$substitutionarray['adrodt_bill_name']			= $object->client->name;
 		$substitutionarray['adrodt_bill_lastname'] 		= $object->client->lastname;
 		$substitutionarray['adrodt_bill_firstname'] 	= $object->client->firstname;
@@ -77,6 +77,6 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_email'] 		= $object->client->email;
 		$substitutionarray['adrodt_bill_phone'] 		= $object->client->phone;
 		$substitutionarray['adrodt_bill_fax'] 			= $object->client->fax;
-	}$substitutionarray['myowntag'] 			= 'test';
+	}
 	
 }
