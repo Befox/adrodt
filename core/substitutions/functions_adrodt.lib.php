@@ -97,5 +97,5 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 	$line->fetch_optionals($line->rowid);
 	foreach($line->array_options as $options_key => $value)
 		$substitutionarray['line_'.$options_key] = $value;
-
+	$substitutionarray['myowntag'] = print_r($substitutionarray, true);
 }
