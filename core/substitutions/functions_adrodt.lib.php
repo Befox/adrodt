@@ -90,7 +90,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
  *              @param  Object          $line                   Current line being processed, use this object to get values
  * 		@return	void					The entry parameter $substitutionarray is modified
  */
-function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$object,$line) {
+function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$object,$line)
 {
    global $conf,$db;
  
