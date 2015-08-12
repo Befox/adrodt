@@ -15,5 +15,19 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
    $myvalue='Put here calculated value to insert';
    $substitutionarray['adrodt_deliv_name']=$myvalue;
    $substitutionarray['adrodt_deliv_firstname']=$myvalue;
-   $substitutionarray['myowntag']=print_r($object, true);
+   
+   
+   /*
+    * 
+    * */
+	$usecontact=false;
+	$arrayidcontact=$object->getIdContact('external','CUSTOMER');
+	if (count($arrayidcontact) > 0)
+	{
+		$usecontact=true;
+		$result=$object->fetch_contact($arrayidcontact[0]);
+	}
+	
+	$substitutionarray['myowntag']=print_r($result, true);
+   
 }
