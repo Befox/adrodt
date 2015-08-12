@@ -20,14 +20,18 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
    /*
     * 
     * */
+    $substitutionarray['myowntag'] = '';
+    
 	$usecontact=false;
 	$arrayidcontact=$object->getIdContact('external','CUSTOMER');
 	if (count($arrayidcontact) > 0)
 	{
+		$substitutionarray['myowntag'].=print_r($arrayidcontact, true);
 		$usecontact=true;
 		$result=$object->fetch_contact($arrayidcontact[0]);
 	}
 	
-	$substitutionarray['myowntag']=print_r($result, true);
+	$substitutionarray['myowntag'].='--------------------------------------------------------------------'.print_r($object->contact, true);
+	$substitutionarray['myowntag'].='--------------------------------------------------------------------'.print_r($object, true);
    
 }
