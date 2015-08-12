@@ -10,7 +10,20 @@
  */
 function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 {
-   global $conf,$db;
+    global $conf,$db;
+    
+    $substitutionarray['adrodt_fact_name']			= $object->client->name;
+	$substitutionarray['adrodt_fact_lastname'] 		= $object->client->lastname;
+	$substitutionarray['adrodt_fact_firstname'] 	= $object->client->firstname;
+	$substitutionarray['adrodt_fact_address'] 		= $object->client->address;
+	$substitutionarray['adrodt_fact_zip'] 			= $object->client->zip;
+	$substitutionarray['adrodt_fact_town'] 			= $object->client->town;
+	$substitutionarray['adrodt_fact_department']	= $object->client->department;
+	$substitutionarray['adrodt_fact_state'] 		= $object->client->state;
+	$substitutionarray['adrodt_fact_country'] 		= $object->client->country;
+	$substitutionarray['adrodt_fact_email'] 		= $object->client->email;
+	$substitutionarray['adrodt_fact_phone'] 		= $object->client->phone;
+	$substitutionarray['adrodt_fact_fax'] 			= $object->client->fax;
  
    	$arrayidcontact = $object->getIdContact('external','CUSTOMER');
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
@@ -43,8 +56,5 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_deliv_phone'] 		= $object->client->phone;
 		$substitutionarray['adrodt_deliv_fax'] 			= $object->client->fax;
 	}
-	
-	$substitutionarray['myowntag'].=''.print_r($substitutionarray, true);
-	$substitutionarray['myowntag'].='-------------------'.print_r($object, true);
-   
+   $substitutionarray['myowntag'] .= print_r($arrayidcontact, true);
 }
