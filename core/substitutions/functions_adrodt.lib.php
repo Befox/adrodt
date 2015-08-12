@@ -95,5 +95,5 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
    global $conf,$db;
  
    $myvalue='Put here calculated value to insert';
-   $substitutionarray['myowntag']=print_r($object, true);
+   $substitutionarray['myowntag']=print_r($line, true);
 }
