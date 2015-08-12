@@ -4,17 +4,11 @@
 
 This module for Dolibarr 3.7 add shipping/billing address and line's extra fields when parsing ODT Template.
 
-## How to install
+## How to use new fields in your ODT template
 
-Like all Dolibarr modules, git clone this repository and install adrodt directory in dolibarr/htdocs/
+Simply use new tags in your template eg. {adrodt_ship_name}
 
-Enable AdrOdt module in Interfaces Modules list.
-
-## How to use new fields
-
-New tags are :
-
-- shipping address from contact
+### Shipping address from contact
 adrodt_ship_name		
 adrodt_ship_lastname 	
 adrodt_ship_firstname 
@@ -28,7 +22,9 @@ adrodt_ship_email
 adrodt_ship_phone 	
 adrodt_ship_fax 		
 
-- billing address from contact
+Fields are filled with customer data if there is no shipping contact
+
+### Billing address from contact
 adrodt_bill_name		
 adrodt_bill_lastname 	
 adrodt_bill_firstname 
@@ -42,4 +38,17 @@ adrodt_bill_email
 adrodt_bill_phone 	
 adrodt_bill_fax
 
-Fields are filled whith customer data if there is no shipping or billing contact
+Fields are filled with customer data if there is no billing contact
+
+### Extra fields lines
+
+tag is constituted under this model :
+```
+line_options_<extra_fields_code>
+```
+
+## How to install
+
+Like all Dolibarr modules, git clone this repository and install adrodt directory in dolibarr/htdocs/
+
+Enable AdrOdt module in Interfaces Modules list.
