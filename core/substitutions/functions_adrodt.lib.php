@@ -13,5 +13,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
    global $conf,$db;
  
    $myvalue='Put here calculated value to insert';
-   $substitutionarray['myowntag']=$myvalue;
+   $substitutionarray['adrodt_deliv_name']=$myvalue;
+   $substitutionarray['adrodt_deliv_firstname']=$myvalue;
+   $substitutionarray['myowntag']=print_r($object, true);
 }
