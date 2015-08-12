@@ -56,5 +56,5 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_deliv_phone'] 		= $object->client->phone;
 		$substitutionarray['adrodt_deliv_fax'] 			= $object->client->fax;
 	}
-   $substitutionarray['myowntag'] .= print_r($arrayidcontact, true);
+   $substitutionarray['myowntag'] .= print_r($object, true);
 }
