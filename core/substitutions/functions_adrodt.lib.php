@@ -15,7 +15,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
    	$arrayidcontact = $object->getIdContact('external','CUSTOMER');
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
-		$substitutionarray['adrodt_deliv_name']		 	= $object->name;
+		$substitutionarray['adrodt_deliv_name']		 	= $object->client->name;
 		$substitutionarray['adrodt_deliv_lastname'] 	= $object->contact->lastname;
 		$substitutionarray['adrodt_deliv_firstname'] 	= $object->contact->firstname;
 		$substitutionarray['adrodt_deliv_address'] 		= $object->contact->address;
@@ -30,17 +30,18 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	}
 	else
 	{
-		$substitutionarray['adrodt_deliv_lastname'] 	= $object->lastname;
-		$substitutionarray['adrodt_deliv_firstname'] 	= $object->firstname;
-		$substitutionarray['adrodt_deliv_address'] 		= $object->address;
-		$substitutionarray['adrodt_deliv_zip'] 			= $object->zip;
-		$substitutionarray['adrodt_deliv_town'] 		= $object->town;
-		$substitutionarray['adrodt_deliv_department'] 	= $object->department;
-		$substitutionarray['adrodt_deliv_state'] 		= $object->state;
-		$substitutionarray['adrodt_deliv_country'] 		= $object->country;
-		$substitutionarray['adrodt_deliv_email'] 		= $object->email;
-		$substitutionarray['adrodt_deliv_phone'] 		= $object->phone;
-		$substitutionarray['adrodt_deliv_fax'] 			= $object->fax;
+		$substitutionarray['adrodt_deliv_name']		 	= $object->client->name;
+		$substitutionarray['adrodt_deliv_lastname'] 	= $object->client->lastname;
+		$substitutionarray['adrodt_deliv_firstname'] 	= $object->client->firstname;
+		$substitutionarray['adrodt_deliv_address'] 		= $object->client->address;
+		$substitutionarray['adrodt_deliv_zip'] 			= $object->client->zip;
+		$substitutionarray['adrodt_deliv_town'] 		= $object->client->town;
+		$substitutionarray['adrodt_deliv_department'] 	= $object->client->department;
+		$substitutionarray['adrodt_deliv_state'] 		= $object->client->state;
+		$substitutionarray['adrodt_deliv_country'] 		= $object->client->country;
+		$substitutionarray['adrodt_deliv_email'] 		= $object->client->email;
+		$substitutionarray['adrodt_deliv_phone'] 		= $object->client->phone;
+		$substitutionarray['adrodt_deliv_fax'] 			= $object->client->fax;
 	}
 	
 	$substitutionarray['myowntag'].=''.print_r($substitutionarray, true);
