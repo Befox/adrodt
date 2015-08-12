@@ -78,4 +78,5 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	}
 	
    $substitutionarray['myowntag'] .= print_r($substitutionarray, true);
+   $substitutionarray['myowntag'] .= '--------------------'.print_r($object, true);
 }
