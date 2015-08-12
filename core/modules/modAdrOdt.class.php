@@ -89,6 +89,7 @@ class modAdrOdt extends DolibarrModules
 		//                        );
 		$this->module_parts = array('substitutions' => 1)
 
+
 		// Data directories to create when module is enabled.
 		// Example: this->dirs = array("/mymodule/temp");
 		$this->dirs = array();
