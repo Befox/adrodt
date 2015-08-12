@@ -16,7 +16,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
    	$arrayidcontact = $object->getIdContact('external','SHIPPING');
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
-		$substitutionarray['adrodt_ship_name']		 	= $object->client->name;
+		$substitutionarray['adrodt_ship_name']		 	= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_ship_lastname'] 		= $object->contact->lastname;
 		$substitutionarray['adrodt_ship_firstname'] 	= $object->contact->firstname;
 		$substitutionarray['adrodt_ship_address'] 		= $object->contact->address;
@@ -48,7 +48,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	$arrayidcontact = $object->getIdContact('external','BILLING');
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
-		$substitutionarray['adrodt_bill_name']			= $object->client->name;
+		$substitutionarray['adrodt_bill_name']			= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_bill_lastname'] 		= $object->contact->lastname;
 		$substitutionarray['adrodt_bill_firstname'] 	= $object->contact->firstname;
 		$substitutionarray['adrodt_bill_address'] 		= $object->contact->address;
@@ -78,5 +78,4 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	}
 	
    $substitutionarray['myowntag'] .= print_r($substitutionarray, true);
-   $substitutionarray['myowntag'] .= '--------------------'.print_r($object, true);
 }
