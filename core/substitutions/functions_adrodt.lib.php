@@ -46,7 +46,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	
 	$arrayidcontact = $object->getIdContact('external','BILLING');
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
-	{$substitutionarray['mayonnaise'] 			= 'test';$substitutionarray['myowntag'] 			= 'te4444st';
+	{
 		$substitutionarray['myadrodtbillname']			= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_bill_name']			= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_bill_lastname'] 		= $object->contact->lastname;
@@ -62,7 +62,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_fax'] 			= $object->contact->fax;
 	}
 	else
-	{$substitutionarray['mayonnaise'] 			= 'test';$substitutionarray['myowntag'] 			= 'te4444st';
+	{
 		$substitutionarray['myadrodtbillname']			= $object->client->name;
 		$substitutionarray['adrodt_bill_name']			= $object->client->name;
 		$substitutionarray['adrodt_bill_lastname'] 		= $object->client->lastname;
@@ -78,4 +78,22 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_fax'] 			= $object->client->fax;
 	}
 	
+}
+
+/** 		Function called to complete substitution array for lines (before generating on ODT, or a personalized email)
+ * 		functions xxx_completesubstitutionarray_lines are called by make_substitutions() if file
+ * 		is inside directory htdocs/core/substitutions
+ * 
+ *		@param	array		$substitutionarray	Array with substitution key=>val
+ *		@param	Translate	$langs			Output langs
+ *		@param	Object		$object			Object to use to get values
+ *              @param  Object          $line                   Current line being processed, use this object to get values
+ * 		@return	void					The entry parameter $substitutionarray is modified
+ */
+function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$object,$line) {
+{
+   global $conf,$db;
+ 
+   $myvalue='Put here calculated value to insert';
+   $substitutionarray['myowntag']=print_r($object, true);
 }
