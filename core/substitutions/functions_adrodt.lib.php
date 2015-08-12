@@ -93,7 +93,10 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$object,$line)
 {
    global $conf,$db;
- 
-   $myvalue='Put here calculated value to insert';
-   $substitutionarray['myowntag']=print_r($line, true);
+	$substitutionarray['myowntag'] = '';
+	$line->fetch_optionals($line->rowid);
+	foreach($line->array_options as $options_key => $value)
+		$substitutionarray['myowntag'] .= $options_key.'//'.$value;
+
+   //$substitutionarray['myowntag']=print_r($line, true);
 }
