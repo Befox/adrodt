@@ -44,7 +44,9 @@ Fields are filled with customer data if there is no billing contact
 
 tag is constituted under this model :
 
-```line_options_<extra_fields_code>```
+```
+line_options_<extra_fields_code>
+```
 
 ## How to install
 
