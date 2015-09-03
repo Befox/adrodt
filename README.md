@@ -49,3 +49,7 @@ Tag is constituted under this model : ```{line_options_<extra_fields_code>}``` w
 Like all Dolibarr modules, git clone this repository and install adrodt directory in dolibarr/htdocs/
 
 Enable AdrOdt module in Interfaces Modules list.
+
+## Using ODT Templates
+
+see official : https://wiki.dolibarr.org/index.php/Create_an_ODT_document_template
