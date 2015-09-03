@@ -42,7 +42,7 @@ Fields are filled with customer data if there is no billing contact
 
 ### Extra fields lines
 
-tag is constituted under this model : ```{line_options_<extra_fields_code>}``` where ```<extra_fields_code>``` is the extra field code name (e.g. ```{line_options_myfield}```)
+Tag is constituted under this model : ```{line_options_<extra_fields_code>}``` where ```<extra_fields_code>``` is the extra field code name (e.g. ```{line_options_myfield}```)
 
 ## How to install
 
