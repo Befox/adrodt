@@ -53,3 +53,9 @@ Enable AdrOdt module in Interfaces Modules list.
 ## Using ODT Templates
 
 see official : https://wiki.dolibarr.org/index.php/Create_an_ODT_document_template
+
+```
+Warning, tags must be rounded with {} or [] for arrays (see later) and must be typed with no stop using Office suite
+(with no backward and no copy-paste). If not doing that, Office suite add some invisible informations making
+replacement not possible. 
+```
