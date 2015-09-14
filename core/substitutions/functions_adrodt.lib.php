@@ -98,8 +98,6 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 	foreach($line->array_options as $options_key => $value)
 		$substitutionarray['line_'.$options_key] = $value;
 	
-	if ( ! isset($substitutionarray['adrodt_debug_lines']))
-		$substitutionarray['adrodt_debug_lines'] = print_r($line->array_options, true);
-	else
-		$substitutionarray['adrodt_debug_lines'] .= "\n".print_r($line->array_options, true);
+	$substitutionarray['adrodt_debug_lines'] = 'Extrafields Keys:'."\n".print_r(array_keys($line->array_options), true)."\n";
+	$substitutionarray['adrodt_debug_lines'] .= 'Substitution Array:'."\n".print_r($substitutionarray, true);
 }
