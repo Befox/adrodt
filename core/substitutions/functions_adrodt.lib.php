@@ -47,7 +47,6 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	$arrayidcontact = $object->getIdContact('external','BILLING');
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
-		$substitutionarray['myadrodtbillname']			= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_bill_name']			= trim($object->contact->firstname.' '.$object->contact->lastname);
 		$substitutionarray['adrodt_bill_lastname'] 		= $object->contact->lastname;
 		$substitutionarray['adrodt_bill_firstname'] 	= $object->contact->firstname;
@@ -63,7 +62,6 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	}
 	else
 	{
-		$substitutionarray['myadrodtbillname']			= $object->client->name;
 		$substitutionarray['adrodt_bill_name']			= $object->client->name;
 		$substitutionarray['adrodt_bill_lastname'] 		= $object->client->lastname;
 		$substitutionarray['adrodt_bill_firstname'] 	= $object->client->firstname;
@@ -77,6 +75,8 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_phone'] 		= $object->client->phone;
 		$substitutionarray['adrodt_bill_fax'] 			= $object->client->fax;
 	}
+	
+	$substitutionarray['adrodt_debug_object']			= print_r($object, true);
 	
 }
 
@@ -92,10 +92,14 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
  */
 function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$object,$line)
 {
-   global $conf,$db;
+    global $conf,$db;
 
 	$line->fetch_optionals($line->rowid);
 	foreach($line->array_options as $options_key => $value)
 		$substitutionarray['line_'.$options_key] = $value;
 	
+	if ( ! isset($substitutionarray['adrodt_debug_lines']))
+		$substitutionarray['adrodt_debug_lines'] = print_r($line->array_options, true);
+	else
+		$substitutionarray['adrodt_debug_lines'] .= "\n".print_r($line->array_options, true);
 }
