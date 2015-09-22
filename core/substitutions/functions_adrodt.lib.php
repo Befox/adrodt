@@ -76,7 +76,8 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_fax'] 			= $object->client->fax;
 	}
 	
-	$substitutionarray['adrodt_debug_object']			= print_r($object, true);
+	$substitutionarray['adrodt_debug_object'] = print_r($substitutionarray, true);
+	$substitutionarray['adrodt_dump_object'] = print_r($object, true);
 	
 }
 
@@ -98,6 +99,7 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 	foreach($line->array_options as $options_key => $value)
 		$substitutionarray['line_'.$options_key] = $value;
 	
-	$substitutionarray['adrodt_debug_lines'] = 'Substitution Array:'."\n".print_r($substitutionarray, true);
+	$substitutionarray['adrodt_debug_lines'] = 'Substitution Array: '."\n".print_r($substitutionarray, true);
+	$substitutionarray['adrodt_dump_lines'] = 'Dump Line: '."\n".print_r($line, true);
 
 }

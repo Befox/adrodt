@@ -59,3 +59,5 @@ Warning, tags must be rounded with {} or [] for arrays (see later) and must be t
 (with no backward and no copy-paste). If not doing that, Office suite add some invisible informations making
 replacement not possible. 
 ```
+
+There is an example ODT template who display all tags added by adrodt and dump all tags available in lines.
