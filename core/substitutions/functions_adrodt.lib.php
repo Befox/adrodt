@@ -11,8 +11,12 @@
 function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 {
     global $conf,$db;
-
-   	$arrayidcontact = $object->getIdContact('external','SHIPPING');
+	
+	if (method_exists($object, 'getIdContact'))
+		$arrayidcontact = $object->getIdContact('external','SHIPPING');
+	else
+		$arrayidcontact = array();
+		
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
 		$substitutionarray['adrodt_ship_name']		 	= trim($object->contact->firstname.' '.$object->contact->lastname);
@@ -44,7 +48,11 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_ship_fax'] 			= $object->client->fax;
 	}
 	
-	$arrayidcontact = $object->getIdContact('external','BILLING');
+	if (method_exists($object, 'getIdContact'))
+		$arrayidcontact = $object->getIdContact('external','BILLING');
+	else
+		$arrayidcontact = array();
+	
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
 		$substitutionarray['adrodt_bill_name']			= trim($object->contact->firstname.' '.$object->contact->lastname);
