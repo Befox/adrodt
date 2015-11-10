@@ -146,9 +146,9 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 function readCustom($type = 'head') {
 	
 	if ($type == 'head')
-		$filename = 'customSubstitutionHead.csv';
+		$filename = __DIR__.'../../customSubstitutionHead.csv';
 	else
-		$filename = 'customSubstitutionLines.csv';
+		$filename = __DIR__.'../../customSubstitutionLines.csv';
 	
 	if (is_file($filename))
 	{
