@@ -10,4 +10,4 @@
  * Author : Befox SARL http://www.befox.fr/
  *
  ******************************************************************/
-header('Location: ./server.php',302);
+

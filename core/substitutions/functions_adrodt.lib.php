@@ -11,6 +11,7 @@
 function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 {
     global $conf,$db;
+	static $rCustom = null;
 	
 	if (method_exists($object, 'getIdContact'))
 		$arrayidcontact = $object->getIdContact('external','SHIPPING');
@@ -84,6 +85,20 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_fax'] 			= $object->client->fax;
 	}
 	
+	//load extra substitution rules
+	if ($rCustom == null)
+	{
+		$rCustom = readCustom('head');
+	}
+	
+	if ($rCustom)
+	{
+		foreach($rCustom as $field => $value)
+		{
+			$substitutionarray[ $key ] = eval($value);
+		}
+	}
+	
 	$substitutionarray['adrodt_debug_object'] = print_r($substitutionarray, true);
 	$substitutionarray['adrodt_dump_object'] = print_r($object, true);
 	
@@ -102,12 +117,50 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$object,$line)
 {
     global $conf,$db;
-
+	static $rCustom = null;
+	
 	$line->fetch_optionals($line->rowid);
 	foreach($line->array_options as $options_key => $value)
 		$substitutionarray['line_'.$options_key] = $value;
 	
+	//load extra substitution rules
+	if ($rCustom == null)
+	{
+		$rCustom = readCustom('lines');
+	}
+	
+	if ($rCustom)
+	{
+		foreach($rCustom as $field => $value)
+		{
+			$substitutionarray[ $key ] = eval($value);
+		}
+	}
+	
 	$substitutionarray['adrodt_debug_lines'] = 'Substitution Array: '."\n".print_r($substitutionarray, true);
 	$substitutionarray['adrodt_dump_lines'] = 'Dump Line: '."\n".print_r($line, true);
+	
+}
 
+
+function readCustom($type = 'head') {
+	
+	if ($type == 'head')
+		$filename = 'customSubstitutionHead.csv';
+	else
+		$filename = 'customSubstitutionLines.csv';
+	
+	if (is_file($filename))
+	{
+		$fh = fopen($filename);
+		if ( ! $fh)
+			return false;
+			
+		$rSubstitution = array();
+		while (($data = fgetcsv($fh, 1000, ";", '"')) !== false)
+		{
+			$rSubstitution[ $data[0] ] = $data[1];
+		}
+		return $rSubstitution;
+	}
 }
