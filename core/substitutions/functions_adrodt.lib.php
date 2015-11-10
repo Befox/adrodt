@@ -11,7 +11,7 @@
 function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 {
     global $conf,$db;
-	static $rCustom = null;
+	static $rCustom = null;	
 	
 	if (method_exists($object, 'getIdContact'))
 		$arrayidcontact = $object->getIdContact('external','SHIPPING');
@@ -95,7 +95,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	{
 		foreach($rCustom as $field => $value)
 		{
-			$substitutionarray[ $key ] = eval($value);
+			$substitutionarray[ $field ] = eval($value);
 		}
 	}
 	
@@ -118,10 +118,33 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 {
     global $conf,$db;
 	static $rCustom = null;
+	static $extrafields = null;
+	static $rExtraParams = array();
+	
+	if ($extrafields == null)
+	{
+		$extrafields = new ExtraFields($db);
+		$extrafields->fetch_name_optionals_label($object->table_element_line);
+		if ($extrafields->attribute_type)
+		{
+			foreach($extrafields->attribute_type as $field => $type)
+			{
+				if ($type == 'select')
+				{
+					$rExtraParams[ 'options_'.$field ] = $extrafields->attribute_param[ $field ]['options'];
+				}
+			}
+		}
+	}
 	
 	$line->fetch_optionals($line->rowid);
 	foreach($line->array_options as $options_key => $value)
-		$substitutionarray['line_'.$options_key] = $value;
+	{
+		if (isset($rExtraParams[ $options_key ]) && isset($rExtraParams[ $options_key ][ $value ]))
+			$substitutionarray['line_'.$options_key] = $rExtraParams[ $options_key ][ $value ];
+		else
+			$substitutionarray['line_'.$options_key] = $value;
+	}
 	
 	//load extra substitution rules
 	if ($rCustom == null)
@@ -133,7 +156,7 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 	{
 		foreach($rCustom as $field => $value)
 		{
-			$substitutionarray[ $key ] = eval($value);
+			$substitutionarray[ $field ] = eval($value);
 		}
 	}
 	
@@ -146,13 +169,13 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 function readCustom($type = 'head') {
 	
 	if ($type == 'head')
-		$filename = __DIR__.'../../customSubstitutionHead.csv';
+		$filename = __DIR__.'/../../customSubstitutionHead.csv';
 	else
-		$filename = __DIR__.'../../customSubstitutionLines.csv';
-	
+		$filename = __DIR__.'/../../customSubstitutionLines.csv';
+
 	if (is_file($filename))
 	{
-		$fh = fopen($filename);
+		$fh = fopen($filename, 'r');
 		if ( ! $fh)
 			return false;
 			
