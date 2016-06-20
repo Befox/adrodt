@@ -17,7 +17,18 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$arrayidcontact = $object->getIdContact('external','SHIPPING');
 	else
 		$arrayidcontact = array();
-		
+
+	if(count($arrayidcontact)==0 && $object->origin!='') // search in origin doc
+	{
+		$object->fetch_origin();
+		if(isset($object->{$object->origin}))
+		{
+			$origObj=$object->{$object->origin};
+			if($origObj!=false && method_exists($origObj, 'getIdContact'))
+					$arrayidcontact = $origObj->getIdContact('external','SHIPPING');
+		}
+	}
+
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
 		$substitutionarray['adrodt_ship_name']		 	= trim($object->contact->firstname.' '.$object->contact->lastname);
@@ -53,6 +64,17 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$arrayidcontact = $object->getIdContact('external','BILLING');
 	else
 		$arrayidcontact = array();
+
+	if(count($arrayidcontact)==0 && $object->origin!='') // search in origin doc
+	{
+		$object->fetch_origin();
+		if(isset($object->{$object->origin}))
+		{
+			$origObj=$object->{$object->origin};
+			if($origObj!=false && method_exists($origObj, 'getIdContact'))
+					$arrayidcontact = $origObj->getIdContact('external','BILLING');
+		}
+	}
 	
 	if (count($arrayidcontact) > 0 && $object->fetch_contact($arrayidcontact[0]) == true)
 	{
