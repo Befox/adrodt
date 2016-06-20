@@ -159,13 +159,16 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 		}
 	}
 	
-	$line->fetch_optionals($line->rowid);
-	foreach($line->array_options as $options_key => $value)
+	if(method_exists($line, 'fetch_optionals'))
 	{
-		if (isset($rExtraParams[ $options_key ]) && isset($rExtraParams[ $options_key ][ $value ]))
-			$substitutionarray['line_'.$options_key] = $rExtraParams[ $options_key ][ $value ];
-		else
-			$substitutionarray['line_'.$options_key] = $value;
+		$line->fetch_optionals($line->rowid);
+		foreach($line->array_options as $options_key => $value)
+		{
+			if (isset($rExtraParams[ $options_key ]) && isset($rExtraParams[ $options_key ][ $value ]))
+				$substitutionarray['line_'.$options_key] = $rExtraParams[ $options_key ][ $value ];
+			else
+				$substitutionarray['line_'.$options_key] = $value;
+		}
 	}
 	
 	//load extra substitution rules
