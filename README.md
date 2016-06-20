@@ -2,7 +2,7 @@
 
 ## What is it ?
 
-This module for Dolibarr 3.7-3.8 add shipping/billing address and line's extra fields when parsing ODT Template.
+This module for Dolibarr 3.7-3.8-3.9 add shipping/billing address and line's extra fields when parsing ODT Template.
 
 ## How to use new fields in your ODT template
 
@@ -55,9 +55,14 @@ Enable AdrOdt module in Interfaces Modules list.
 See official : https://wiki.dolibarr.org/index.php/Create_an_ODT_document_template
 
 ```
-Warning, tags must be rounded with {} or [] for arrays (see later) and must be typed with no stop using Office suite
-(with no backward and no copy-paste). If not doing that, Office suite add some invisible informations making
-replacement not possible. 
+Warning, tags must be rounded with {} or [] for arrays (see later) and must be typed
+with no stop using Office suite (with no backward and no copy-paste).
+If not doing that, Office suite add some invisible informations making replacement
+not possible. 
 ```
 
-There is an example ODT template who display all tags added by adrodt and dump all tags available in lines.
+There is an example ODT template displaying all tags added by adrodt and dump all available tags.
+
+If you encounter problem with your ODT template, please test with adrodt_debug.odt
+
+Please, do not report bugs due to your specific ODT. If adrodt_debug.odt is working, then problem certainly comes from errors in your ODF file.
