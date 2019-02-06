@@ -44,21 +44,52 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_ship_phone'] 		= $object->contact->phone_pro;
 		$substitutionarray['adrodt_ship_fax'] 			= $object->contact->fax;
 	}
+	elseif(isset($object->client))
+	{
+		$substitutionarray['adrodt_ship_name']			= $object->client->name;
+		$substitutionarray['adrodt_ship_lastname']		= '';
+		$substitutionarray['adrodt_ship_firstname']		= '';
+		$substitutionarray['adrodt_ship_address']		= $object->client->address;
+		$substitutionarray['adrodt_ship_zip']			= $object->client->zip;
+		$substitutionarray['adrodt_ship_town']			= $object->client->town;
+		$substitutionarray['adrodt_ship_department']	= $object->client->department;
+		$substitutionarray['adrodt_ship_state']			= $object->client->state;
+		$substitutionarray['adrodt_ship_country']		= $object->client->country;
+		$substitutionarray['adrodt_ship_email']			= $object->client->email;
+		$substitutionarray['adrodt_ship_phone']			= $object->client->phone;
+		$substitutionarray['adrodt_ship_fax']			= $object->client->fax;
+	}
+	elseif(isset($object->thirdparty))
+	{
+		$substitutionarray['adrodt_ship_name']			= $object->thirdparty->name;
+		$substitutionarray['adrodt_ship_lastname']		= '';
+		$substitutionarray['adrodt_ship_firstname']		= '';
+		$substitutionarray['adrodt_ship_address']		= $object->thirdparty->address;
+		$substitutionarray['adrodt_ship_zip']			= $object->thirdparty->zip;
+		$substitutionarray['adrodt_ship_town']			= $object->thirdparty->town;
+		$substitutionarray['adrodt_ship_department']	= $object->thirdparty->department;
+		$substitutionarray['adrodt_ship_state']			= $object->thirdparty->state;
+		$substitutionarray['adrodt_ship_country']		= $object->thirdparty->country;
+		$substitutionarray['adrodt_ship_email']			= $object->thirdparty->email;
+		$substitutionarray['adrodt_ship_phone']			= $object->thirdparty->phone;
+		$substitutionarray['adrodt_ship_fax']			= $object->thirdparty->fax;
+	}
 	else
 	{
-		$substitutionarray['adrodt_ship_name']		 	= $object->client->name;
-		$substitutionarray['adrodt_ship_lastname'] 		= $object->client->lastname;
-		$substitutionarray['adrodt_ship_firstname'] 	= $object->client->firstname;
-		$substitutionarray['adrodt_ship_address'] 		= $object->client->address;
-		$substitutionarray['adrodt_ship_zip'] 			= $object->client->zip;
-		$substitutionarray['adrodt_ship_town'] 			= $object->client->town;
-		$substitutionarray['adrodt_ship_department'] 	= $object->client->department;
-		$substitutionarray['adrodt_ship_state'] 		= $object->client->state;
-		$substitutionarray['adrodt_ship_country'] 		= $object->client->country;
-		$substitutionarray['adrodt_ship_email'] 		= $object->client->email;
-		$substitutionarray['adrodt_ship_phone'] 		= $object->client->phone;
-		$substitutionarray['adrodt_ship_fax'] 			= $object->client->fax;
+		$substitutionarray['adrodt_ship_name']			= $substitutionarray['company_name'];
+		$substitutionarray['adrodt_ship_lastname']		= '';
+		$substitutionarray['adrodt_ship_firstname']		= '';
+		$substitutionarray['adrodt_ship_address']		= $substitutionarray['company_address'];
+		$substitutionarray['adrodt_ship_zip']			= $substitutionarray['company_zip'];
+		$substitutionarray['adrodt_ship_town']			= $substitutionarray['company_town'];
+		$substitutionarray['adrodt_ship_department']	= $substitutionarray['company_department'];
+		$substitutionarray['adrodt_ship_state']			= $substitutionarray['company_state'];
+		$substitutionarray['adrodt_ship_country']		= $substitutionarray['company_country'];
+		$substitutionarray['adrodt_ship_email']			= $substitutionarray['company_email'];
+		$substitutionarray['adrodt_ship_phone']			= $substitutionarray['company_phone'];
+		$substitutionarray['adrodt_ship_fax']			= $substitutionarray['company_fax'];
 	}
+
 	
 	if (method_exists($object, 'getIdContact'))
 		$arrayidcontact = $object->getIdContact('external','BILLING');
@@ -91,20 +122,50 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 		$substitutionarray['adrodt_bill_phone'] 		= $object->contact->phone_pro;
 		$substitutionarray['adrodt_bill_fax'] 			= $object->contact->fax;
 	}
-	else
+	elseif(isset($object->client))
 	{
 		$substitutionarray['adrodt_bill_name']			= $object->client->name;
-		$substitutionarray['adrodt_bill_lastname'] 		= $object->client->lastname;
-		$substitutionarray['adrodt_bill_firstname'] 	= $object->client->firstname;
-		$substitutionarray['adrodt_bill_address'] 		= $object->client->address;
-		$substitutionarray['adrodt_bill_zip'] 			= $object->client->zip;
-		$substitutionarray['adrodt_bill_town'] 			= $object->client->town;
+		$substitutionarray['adrodt_bill_lastname']		= '';
+		$substitutionarray['adrodt_bill_firstname']		= '';
+		$substitutionarray['adrodt_bill_address']		= $object->client->address;
+		$substitutionarray['adrodt_bill_zip']			= $object->client->zip;
+		$substitutionarray['adrodt_bill_town']			= $object->client->town;
 		$substitutionarray['adrodt_bill_department']	= $object->client->department;
-		$substitutionarray['adrodt_bill_state'] 		= $object->client->state;
-		$substitutionarray['adrodt_bill_country'] 		= $object->client->country;
-		$substitutionarray['adrodt_bill_email'] 		= $object->client->email;
-		$substitutionarray['adrodt_bill_phone'] 		= $object->client->phone;
-		$substitutionarray['adrodt_bill_fax'] 			= $object->client->fax;
+		$substitutionarray['adrodt_bill_state']			= $object->client->state;
+		$substitutionarray['adrodt_bill_country']		= $object->client->country;
+		$substitutionarray['adrodt_bill_email']			= $object->client->email;
+		$substitutionarray['adrodt_bill_phone']			= $object->client->phone;
+		$substitutionarray['adrodt_bill_fax']			= $object->client->fax;
+	}
+	elseif(isset($object->thirdparty))
+	{
+		$substitutionarray['adrodt_bill_name']			= $object->thirdparty->name;
+		$substitutionarray['adrodt_bill_lastname']		= '';
+		$substitutionarray['adrodt_bill_firstname']		= '';
+		$substitutionarray['adrodt_bill_address']		= $object->thirdparty->address;
+		$substitutionarray['adrodt_bill_zip']			= $object->thirdparty->zip;
+		$substitutionarray['adrodt_bill_town']			= $object->thirdparty->town;
+		$substitutionarray['adrodt_bill_department']	= $object->thirdparty->department;
+		$substitutionarray['adrodt_bill_state']			= $object->thirdparty->state;
+		$substitutionarray['adrodt_bill_country']		= $object->thirdparty->country;
+		$substitutionarray['adrodt_bill_email']			= $object->thirdparty->email;
+		$substitutionarray['adrodt_bill_phone']			= $object->thirdparty->phone;
+		$substitutionarray['adrodt_bill_fax']			= $object->thirdparty->fax;
+	}
+	else
+	{
+		$substitutionarray['adrodt_bill_name']			= $substitutionarray['company_name'];
+		$substitutionarray['adrodt_bill_lastname']		= '';
+		$substitutionarray['adrodt_bill_firstname']		= '';
+		$substitutionarray['adrodt_bill_address']		= $substitutionarray['company_address'];
+		$substitutionarray['adrodt_bill_zip']			= $substitutionarray['company_zip'];
+		$substitutionarray['adrodt_bill_town']			= $substitutionarray['company_town'];
+		$substitutionarray['adrodt_bill_department']	= $substitutionarray['company_department'];
+		$substitutionarray['adrodt_bill_state']			= $substitutionarray['company_state'];
+		$substitutionarray['adrodt_bill_country']		= $substitutionarray['company_country'];
+		$substitutionarray['adrodt_bill_email']			= $substitutionarray['company_email'];
+		$substitutionarray['adrodt_bill_phone']			= $substitutionarray['company_phone'];
+		$substitutionarray['adrodt_bill_fax']			= $substitutionarray['company_fax'];
 	}
 	
 	//load extra substitution rules
@@ -122,7 +183,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	}
 	
 	$substitutionarray['adrodt_debug_object'] = print_r($substitutionarray, true);
-	$substitutionarray['adrodt_dump_object'] = print_r($object, true);
+	$substitutionarray['adrodt_dump_object'] = @print_r($object, true);
 	
 }
 
@@ -186,7 +247,7 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 	}
 	
 	$substitutionarray['adrodt_debug_lines'] = 'Substitution Array: '."\n".print_r($substitutionarray, true);
-	$substitutionarray['adrodt_dump_lines'] = 'Dump Line: '."\n".print_r($line, true);
+	$substitutionarray['adrodt_dump_lines'] = 'Dump Line: '."\n" . @print_r($line, true);
 	
 }
 

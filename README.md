@@ -2,7 +2,7 @@
 
 ## What is it ?
 
-This module for Dolibarr 3.7-3.8-3.9 add shipping/billing address and line's extra fields when parsing ODT Template.
+This module for Dolibarr 3.7-8.0 add shipping/billing address and line's extra fields when parsing ODT Template.
 
 ## How to use new fields in your ODT template
 
