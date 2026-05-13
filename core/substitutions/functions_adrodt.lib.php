@@ -13,7 +13,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
     global $conf,$db;
 	static $rCustom = null;	
 	
-	if (method_exists($object, 'getIdContact'))
+	if ($object !== null && method_exists($object, 'getIdContact'))
 		$arrayidcontact = $object->getIdContact('external','SHIPPING');
 	else
 		$arrayidcontact = array();
