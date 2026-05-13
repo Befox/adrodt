@@ -91,7 +91,7 @@ function adrodt_completesubstitutionarray(&$substitutionarray,$langs,$object)
 	}
 
 	
-	if (method_exists($object, 'getIdContact'))
+	if ($object != null && method_exists($object, 'getIdContact'))
 		$arrayidcontact = $object->getIdContact('external','BILLING');
 	else
 		$arrayidcontact = array();
@@ -220,7 +220,7 @@ function adrodt_completesubstitutionarray_lines(&$substitutionarray,$langs,$obje
 		}
 	}
 	
-	if(method_exists($line, 'fetch_optionals'))
+	if($line != null && method_exists($line, 'fetch_optionals'))
 	{
 		$line->fetch_optionals($line->rowid);
 		foreach($line->array_options as $options_key => $value)
